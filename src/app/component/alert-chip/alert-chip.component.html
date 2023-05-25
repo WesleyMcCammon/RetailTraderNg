@@ -1,0 +1,13 @@
+<div style="display:grid;grid-template-columns: 1fr 1fr 1fr 1fr 1fr;background-color:rgb(9, 57, 95)">
+    <div class="content-container-section-header">{{title}}</div>
+    <div *ngFor="let alertChip of alertChips" style="border-radius:4px;padding:4px;margin:3px;"
+                [ngStyle]="{'background-color': getChipBackgroundColor(alertChip)}">
+        <div style="display:grid;grid-template-rows: auto auto">
+            <div style="display:grid;grid-template-columns: 1fr 1fr;">
+                <div>{{alertChip.name}}</div>
+                <div>{{alertChip.time | date:'HH:mm:ss'}}</div>
+            </div>
+            <div>{{alertChip.age}}</div>
+        </div>
+    </div>
+</div>

@@ -13,3 +13,11 @@
  .icon-unselected {
     opacity: .2;
  }
+
+ .header-container {
+   display:grid;grid-template-columns:25fr 65fr 10fr;
+ }
+
+ .header-container > div:first-child {
+   font-size:2em;
+ }

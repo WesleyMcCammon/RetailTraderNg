@@ -14,6 +14,8 @@ import { PriceSummaryComponent } from './component/price-summary/price-summary.c
 import { MarketWatchComponent } from './component/market-watch/market-watch.component';
 import { DashboardComponent } from './component/dashboard/dashboard.component';
 import { BidAskComponent } from './component/bid-ask/bid-ask.component';
+import { PriceChipComponent } from './component/price-chip/price-chip.component';
+import { AlertChipComponent } from './component/alert-chip/alert-chip.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { BidAskComponent } from './component/bid-ask/bid-ask.component';
     PriceSummaryComponent,
     MarketWatchComponent,
     DashboardComponent,
-    BidAskComponent
+    BidAskComponent,
+    PriceChipComponent,
+    AlertChipComponent
   ],
   imports: [
     BrowserModule,
