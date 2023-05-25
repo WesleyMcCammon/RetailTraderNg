@@ -1,0 +1,41 @@
+<mat-card [@componentDisplayState]="displayState" (@componentDisplayState.done)="handleDone( $event )">
+    <mat-card-header>
+        <div style="display:grid;grid-template-columns:25fr 65fr 10fr;">
+            <div style="font-size:2em">{{symbol}}</div>
+            <div>
+                <app-bid-ask [symbol]="symbol"></app-bid-ask>
+            </div>
+            <div *ngIf="showIcons" style="display:grid;grid-template-columns:1fr 1fr 1fr;">
+                <mat-icon (click)="toggleBookmark()" [ngClass]="{'icon-selected': bookmark, 'icon-unselected' : !bookmark }" class="price-summary-icon" aria-hidden="false" aria-label="Example home icon" fontIcon="bookmark"></mat-icon>
+                <mat-icon [ngClass]="{'icon-selected': showDetails, 'icon-unselected' : !showDetails }" class="price-summary-icon">grid_on</mat-icon>
+                <mat-icon  [ngClass]="{'icon-selected': showChart, 'icon-unselected' : !showChart }" class="price-summary-icon">equalizer</mat-icon>
+            </div>
+        </div>
+    </mat-card-header>
+    <mat-card-content>
+        <div style="display:grid;grid-template-columns: 1fr 1fr 1fr 1fr 1fr;background-color:rgb(9, 57, 95)">
+            <div style="grid-column:1/-1;font-size:.9em;font-variant: small-caps;;letter-spacing: 2px;margin-left:7px">price levels</div>
+            <div *ngFor="let priceChip of priceChips" style="border-radius:4px;padding:4px;margin:3px;"
+                [ngStyle]="{'background-color': getPriceChipBackgroundColor(priceChip)}">
+                <div style="display:grid;grid-template-rows: auto auto">
+                    <div style="display:grid;grid-template-columns: 1fr 1fr;">
+                        <div>{{priceChip.name}}</div>
+                        <div>{{priceChip.price}}</div>
+                    </div>
+                    <div>{{priceChip.difference}}</div>
+                </div>
+            </div>
+            <div style="grid-column:1/-1;font-size:1em;font-variant: small-caps;;letter-spacing: 2px;margin-left:7px;">alerts</div>
+            <div *ngFor="let alertChip of alertChips" style="border-radius:4px;padding:4px;margin:3px;"
+                [ngStyle]="{'background-color': getAlertChipBackgroundColor(alertChip)}">
+                <div style="display:grid;grid-template-rows: auto auto">
+                    <div style="display:grid;grid-template-columns: 1fr 1fr;">
+                        <div>{{alertChip.name}}</div>
+                        <div>{{alertChip.time | date:'HH:mm:ss'}}</div>
+                    </div>
+                    <div>{{alertChip.age}}</div>
+                </div>
+            </div>
+        </div>
+    </mat-card-content>
+</mat-card>

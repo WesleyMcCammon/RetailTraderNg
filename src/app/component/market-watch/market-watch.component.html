@@ -1,0 +1,20 @@
+<div class="wrapper">
+    <div class="box a">
+        <mat-card>
+            <mat-card-content>
+                <p>price summary information goes here</p>
+            </mat-card-content>
+        </mat-card>
+    </div>
+    <div *ngFor="let priceSummaryModel of marketWatchModel.priceSummaryModel">
+        <app-price-summary 
+            [symbol]="priceSummaryModel.instrument.symbol"
+            [description]="priceSummaryModel.instrument.description"
+            [showChart]="priceSummaryModel.showChart"
+            [showDetails]="priceSummaryModel.showDetails"
+            [bookmark]="priceSummaryModel.bookmark"
+            [displayState]="priceSummaryModel.displayState"
+            (selectBookmark)="onClickBookmark($event)"
+        ></app-price-summary>
+    </div>
+</div>

@@ -1,0 +1,19 @@
+.wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    width: 95%;
+}
+
+.box {
+    background-color: #444;
+    color: #fff;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.a {
+    grid-column: span 3;    
+}
+.mdc-card {
+    background-color: transparent;
+}

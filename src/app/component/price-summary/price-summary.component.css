@@ -1,0 +1,15 @@
+.mdc-card {
+    background-color: transparent;
+}
+.price-summary-icon {
+    transform: scale(.7);
+    cursor: pointer;
+ }
+
+ .icon-selected {
+    opacity: 1;
+ }
+
+ .icon-unselected {
+    opacity: .2;
+ }
