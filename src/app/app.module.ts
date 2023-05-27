@@ -16,6 +16,7 @@ import { DashboardComponent } from './component/dashboard/dashboard.component';
 import { BidAskComponent } from './component/bid-ask/bid-ask.component';
 import { PriceChipComponent } from './component/price-chip/price-chip.component';
 import { AlertChipComponent } from './component/alert-chip/alert-chip.component';
+import { PriceSummaryFilterComponent } from './component/price-summary-filter/price-summary-filter.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { AlertChipComponent } from './component/alert-chip/alert-chip.component'
     DashboardComponent,
     BidAskComponent,
     PriceChipComponent,
-    AlertChipComponent
+    AlertChipComponent,
+    PriceSummaryFilterComponent
   ],
   imports: [
     BrowserModule,

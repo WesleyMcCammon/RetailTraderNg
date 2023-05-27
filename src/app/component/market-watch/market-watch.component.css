@@ -1,6 +1,6 @@
 .wrapper {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     width: 95%;
 }
 
@@ -12,7 +12,7 @@
 }
 
 .a {
-    grid-column: span 3;    
+    grid-column: span 5;    
 }
 .mdc-card {
     background-color: transparent;
