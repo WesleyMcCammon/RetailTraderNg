@@ -1,0 +1,111 @@
+<!-- <div style="color:white">
+    pivots: {{pivots.length}}  ohlc: {{ohlcPrevDays.length}}  stale: {{staleDate.toLocaleTimeString()}}
+</div>
+<div style="color:white">
+    <table>
+        <tr *ngFor="let p of pivots">
+            <td>{{p.instrument}}</td>
+            <td>{{p.lastUpdate.toLocaleTimeString()}}</td>
+            <td *ngFor="let t of p.pivotLevels">{{t.name}} {{t.value}} {{t.difference}}</td>
+        </tr>
+    </table>
+    <table>
+        <tr *ngFor="let p of ohlcPrevDays">
+            <td>{{p.instrument}}</td>
+            <td>{{p.lastUpdate.toLocaleTimeString()}}</td>
+            <td>{{p.previousDayHigh}}</td>
+            <td>{{p.previousDayHighDiff}}</td>
+            <td>{{p.previousDayLow}}</td>
+            <td>{{p.previousDayLowDiff}}</td>
+        </tr>
+    </table>
+</div>
+
+<ul>
+    <li *ngFor="let i of instruments">{{i}}</li>
+</ul> -->
+<div style="display:grid;grid-template-columns:75fr 25fr">
+    <div>
+        <div style="margin-left:5px;color:white;font-size:1.3em;">
+            Market Watch Dashboard
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;font-family:verdana;font-size:1em;color:white;">
+            <div *ngFor="let instrument of instruments"><div style="border:solid 1px #000;border-radius:4px;margin:5px;padding:5px;">                
+                <div style="padding:3px;">
+                    <div style="display:grid;grid-template-columns:30fr 65fr 05fr">
+                        <div style="color:white;font-size:1.1em;">{{instrument}}</div>
+                        <div style="font-size:.8em;color:white;position:relative;top:1px;display:grid;grid-template-columns:45fr 45fr 10fr;">
+                            <div style="color:#ababab">bid&nbsp;<span>{{getBid(instrument)}}</span></div>
+                            <div style="color:#ababab">ask&nbsp;<span>{{getAsk(instrument)}}</span></div>
+                            <div style="color:rgb(10, 196, 10)">+1.25%</div>
+                        </div>
+                    </div>
+                </div>
+                <div style="font-size:.8em;font-variant:small-caps;background-color:rgb(9, 57, 95);color:rgb(62, 156, 233);padding:3px;">
+                    <div>price levels</div>
+                </div>
+                <div style="display:grid;grid-template-columns:40fr 30fr 30fr;">
+                    <div>
+                        <div *ngFor="let pivotLevel of getPivots(instrument)" style="padding:2px;margin:4px 0px 4px 0px;font-size:.8em;display:grid;grid-template-columns:20fr 40fr 40fr;border:solid 1px #646464;border-radius:4px;color:#ababab;">
+                            <div style="padding-left:4px;">{{pivotLevel.name}}</div>
+                            <div>{{pivotLevel.value.toFixed(2)}}</div>
+                            <div style="text-align:right">{{pivotLevel.difference.toFixed(2)}}</div>
+                        </div>
+                    </div>
+                    <div>
+                        <div *ngFor="let pivotLevel of getPrevOHLC(instrument)" style="display:grid;grid-template-columns:1fr;grid-gap:4px;border:solid 1px #646464;border-radius:4px;margin:3px;padding:3px 6px 3px 6px;font-size:.8em;color:#ababab;">
+                            <div style="font-size:.8em;">{{pivotLevel.name}}</div>
+                            <div style="display:grid;grid-template-columns:1fr 1fr">
+                                <div>{{pivotLevel.value.toFixed(2)}}</div>     
+                                <div style="text-align:right">{{pivotLevel.difference.toFixed(2)}}</div>
+                            </div>            
+                        </div>
+                        <div style="padding:2px;margin:4px 0px 4px 0px;font-size:.8em;display:grid;grid-template-columns:40fr 20fr 20fr 20fr;border:solid 1px #646464;border-radius:4px;color:#ababab;">
+                            <div style="position:relative;top:3px;left:3px;">EMA</div>
+                            <div style="text-align:center;padding:2px 4px 2px 4px;border:solid 1px #646464;border-radius:4px;">9</div>
+                            <div style="text-align:center;padding:2px 4px 2px 4px;border:solid 1px #646464;border-radius:4px;">14</div>
+                            <div style="text-align:center;padding:2px 4px 2px 4px;border:solid 1px #646464;border-radius:4px;">5</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr">
+                    <div *ngFor="let pivotLevel of getPivots(instrument)" style="display:grid;grid-template-columns:1fr;grid-gap:4px;border:solid 1px #646464;border-radius:4px;margin:3px;padding:3px 6px 3px 6px;font-size:.8em;color:#ababab;">
+                        <div style="font-size:.8em;">{{pivotLevel.name}}</div>
+                        <div style="display:grid;grid-template-columns:1fr 1fr">
+                            <div>{{pivotLevel.value.toFixed(2)}}</div>     
+                            <div style="text-align:right">{{pivotLevel.difference.toFixed(2)}}</div>
+                        </div>            
+                    </div>
+                    <div *ngFor="let pivotLevel of getPrevOHLC(instrument)" style="display:grid;grid-template-columns:1fr;grid-gap:4px;border:solid 1px #646464;border-radius:4px;margin:3px;padding:3px 6px 3px 6px;font-size:.8em;color:#ababab;">
+                        <div style="font-size:.8em;">{{pivotLevel.name}}</div>
+                        <div style="display:grid;grid-template-columns:1fr 1fr">
+                            <div>{{pivotLevel.value.toFixed(2)}}</div>     
+                            <div style="text-align:right">{{pivotLevel.difference.toFixed(2)}}</div>
+                        </div>            
+                    </div>
+                </div> -->
+                <div style="grid-column:1 / span 5;font-size:.8em;font-variant:small-caps;background-color:rgb(9, 57, 95);color:rgb(62, 156, 233);padding:3px;">
+                    <div>alerts</div>
+                </div>
+                <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr">
+                <!-- @{
+                    foreach(var a in m.MarketWatchAlerts) {
+                    <div style="display:grid;grid-template-columns:1fr;grid-gap:4px;border:solid 1px #646464;border-radius:4px;margin:3px;padding:3px 6px 3px 6px;;font-size:.8em;color:#ababab;">
+                        <div style="font-size:.8em;">@a.DisplayName</div>
+                        <div style="display:grid;grid-template-columns:1fr 1fr">
+                            <div style="font-size:.8em;">@a.AlertDateTime.ToShortTimeString()</div>   
+                        </div>            
+                    </div>
+                    }
+                } -->
+                </div>
+                </div>
+            </div>
+        </div> 
+    </div>
+    <div>
+        <div style="margin-left:5px;color:white;font-size:1.3em;">
+            Alerts
+        </div>
+    </div>
+</div>
